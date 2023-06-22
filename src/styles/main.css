@@ -1,0 +1,51 @@
+@font-face {
+  font-family: Shabnam;
+  src: url(../resources/font/Shabnam.ttf);
+}
+@font-face {
+  font-family: Shabnam-bold;
+  src: url(../resources/font/Shabnam-Bold-FD.ttf);
+}
+
+.Container {
+  text-align: center;
+}
+
+@media (prefers-color-scheme: dark) {
+  body {
+    background-color: var(--deep-black);
+    color: var(--deep-white);
+  }
+}
+@media (prefers-dark-interface) {
+  body {
+    color: var(--white);
+    background: black;
+  }
+}
+
+:root {
+  --green: #53c786;
+  --limon: #6cbe43;
+  --dark-green: #173109;
+  --green-mid: #0db155;
+  --green-dark: #2c7744;
+  --white: #ffffff;
+  --teal : #045453;
+  --salmon: #fe7774;
+  --light-gray: #e1e6ef;
+  --silver: #d1d4d3;
+  --lovender: #a8b6cc;
+  --dark-sea-green: #74a0a0;
+  --black: #000;
+  --coral: #fd6e70;
+  --deep-pink: #f74579;
+  --hot-pink: #f96289;
+  --slate-gray: #666363;
+  --spring-green: #73bf43;
+  --dark-gray: #252525;
+  --light-black: #171817;
+  --deep-white: #dadada;
+  --deep-black: #1f2023;
+
+}
