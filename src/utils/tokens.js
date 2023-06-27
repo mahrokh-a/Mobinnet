@@ -1,5 +1,5 @@
 export default {
-  RIAL: "ریال",
+  RIAL: "تومان",
   MONTHLY: "ماهانه",
   TRAFFIC: "Traffic",
   RAM: "RAM",

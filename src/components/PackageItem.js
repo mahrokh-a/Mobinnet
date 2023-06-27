@@ -1,31 +1,37 @@
-import { useCallback, useEffect, useState } from "react";
+import { useCallback, useState } from "react";
 import "../styles/packageItem.css";
 import CustomText from "./CustomText";
 import tokens from "../utils/tokens";
 import images from "../utils/images";
 import RowItemInformation from "./RowItemInformation";
+import { convert_price } from "../utils/generalFunctions";
 
 function PackageItem(props) {
-  let convert_price = useCallback((price) => {
-    if (!price) return null;
-    let _price = price.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ".");
-    return _price;
-  }, []);
+  const [index, setIndex] = useState(0)
+  let product = props.items[index] 
+
+  const onChangePackage = useCallback((event) => {
+    setIndex(event.target.value)
+  }, [])
+
+  const selectPackage = useCallback(() => {
+    props.selectPackage(product.id)
+  }, [index])
 
   return (
-    <div className="package-item-container" key={props.id}>
+    <div className="package-item-container" key={product.id}>
       <div
         className={
           "item" +
-          (props.selectedPackage == props.id ? " package-item-selected" : "")
+          (props.selectedPackage == product.id ? " package-item-selected" : "")
         }
       >
-        {props.selectedPackage == props.id && (
+        {props.selectedPackage == product.id && (
           <div className="package-item-selected-icon">
             <img src={images.submit_icon} className="selected-icon" />
           </div>
         )}
-        <div className="package-image">
+        <div className="package-image" >
           <div className="package-image-box">
             <img
               src={images.background_products}
@@ -35,12 +41,12 @@ function PackageItem(props) {
               src={images.background_products_margin}
               className="background-product-margin"
             />
-            <img src={images[props.packageName]} className="product-image" />
-            {!!props.discountPercent && (
+            <img src={images[product.packageName]} className="product-image" />
+            {!!product.discountPercent && (
               <div className="percent-discount">
                 <CustomText
                   type={"medium"}
-                  children={`%${props.discountPercent}`}
+                  children={`%${product.discountPercent}`}
                   customStylesClass={"percent-discount-text"}
                 />
               </div>
@@ -50,30 +56,30 @@ function PackageItem(props) {
         <div className="package-name">
           <CustomText
             type={"large"}
-            children={props.packageName}
+            children={product.packageName}
             customStylesClass={"package-name-text"}
           />
         </div>
         <div className="row package-price">
-          <div className="w-auto">
+          <div className="w-auto package-price-container">
             <div className="package-price-box">
               <CustomText
                 type={"medium"}
-                children={convert_price(props.discount)}
+                children={!!product.discount ? convert_price(product.price / 10) : ''}
                 customStylesClass={"package-discount-percent"}
               />
             </div>
             <div className="package-price-box">
               <CustomText
                 type={"x-large"}
-                children={convert_price(props.price)}
+                children={!!product.discount ? convert_price((product.price - product.discount) / 10) : convert_price(product.price/10)}
                 customStylesClass={"package-price-text"}
               />
             </div>
           </div>
-          <div className="w-auto package-unit-price-box center-content">
+          <div className="w-auto package-unit-price-box center-content" >
             <CustomText
-              type={"x-medium"}
+              type={"small"}
               children={`${tokens.RIAL}/${tokens.MONTHLY}`}
               customStylesClass={"package-unit-price"}
             />
@@ -84,43 +90,46 @@ function PackageItem(props) {
             <RowItemInformation
               image={images.hdd}
               title={`${tokens.TRAFFIC}`}
-              value={props.trafficCapacity}
+              value={product.trafficCapacity}
             />
             <RowItemInformation
               image={images.ram}
               title={`${tokens.RAM}`}
-              value={`${tokens.GIG} ${props.ramCapcity}`}
+              value={`${tokens.GIG} ${product.ramCapcity}`}
             />
           </div>
           <div className="row section-data m-0">
             <RowItemInformation
               image={images.cpu}
               title={`${tokens.CPU}`}
-              value={`${tokens.CORE} ${props.cpuCapacity}`}
+              value={`${tokens.CORE} ${product.cpuCapacity}`}
             />
             <RowItemInformation
               image={images.hdd}
               title={`${tokens.SSD}`}
-              value={`${tokens.GIG} ${props.storageCapacity}`}
+              value={`${tokens.GIG} ${product.storageCapacity}`}
             />
           </div>
         </div>
         <div className="package-cycle">
           <img src={images.arrow_down} className="arrow-down" />
-          <select className="form-control form-selection">
-            <option>{props.duration}</option>
+          <select className="form-control form-selection" value={index} onChange={onChangePackage}>
+            {props.items.map((item, index) => {
+                return <option value={index}>{item.duration}</option>
+              })
+            }
           </select>
         </div>
         <div className="btn-submit-box">
           <button
             className="btn-submit"
-            onClick={() => props.selectPackage(props.id)}
+            onClick={selectPackage}
           >
             <div className="btn-text-box">
               <CustomText
                 type={"medium"}
                 children={
-                  props.selectedPackage == props.id
+                  props.selectedPackage == product.id
                     ? tokens.PAYMENT
                     : tokens.SUBMIT
                 }

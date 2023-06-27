@@ -44,6 +44,9 @@ input.form-control:focus {
   height: 2rem;
   width: 100%;
 }
+.package-price-container {
+  height: 5rem;
+}
 .package-price {
   height: 5rem;
   width: 100%;
@@ -51,18 +54,18 @@ input.form-control:focus {
 }
 .package-data {
   height: 5rem;
-  width: 90%;
-  margin: auto;
+  width: 94%;
+  margin: 10px auto;
 }
 .package-cycle {
   height: 3rem;
-  width: 90%;
+  width: 94%;
   margin: auto;
   position: relative;
 }
 .btn-submit-box {
   height: 3rem;
-  width: 90%;
+  width: 94%;
   margin: 20px auto;
 }
 .section-data {
@@ -78,17 +81,21 @@ input.form-control:focus {
   padding: 0px;
 }
 .colon-text {
-  width: 10%;
+  width: 4%;  
 }
 .text-section {
   width: 25%;
   max-width: max-content;
-  margin-right: 5px;
+  margin-right: 3px;
+}
+.package-title {
+  max-width: max-content;
+  margin-right: 3px;
 }
 .package-data-describe {
   width: 40%;
   display: flex;
-  justify-content: flex-start;
+  justify-content: center;
   align-items: flex-start;
   margin-top: 3px;
 }
@@ -135,7 +142,7 @@ input.form-control:focus {
   color: var(--teal);
 }
 .package-unit-price {
-  margin-top: 10px;
+  margin-top: 15px;
   color: var(--green-dark);
 }
 .package-unit-price-box {
@@ -148,6 +155,7 @@ input.form-control:focus {
 }
 .package-data-title {
   color: var(--lovender);
+  font-weight: bold;
 }
 .package-data-text {
   font-size: 11px;
@@ -178,7 +186,7 @@ input.form-control:focus {
   color: var(--white);
 }
 .btn-text-box {
-  width: 90%;
+  width: 94%;
 }
 .btn-icon-box {
   width: 35px;
@@ -242,7 +250,7 @@ input.form-control:focus {
   display: flex;
   justify-content: flex-start;
   align-items: center;
-  margin-right: 20px;
+  margin-right: 10px;
 }
 .package-data-icon {
   width: 18px;
@@ -281,6 +289,10 @@ input.form-control:focus {
     font-size: 14px;
     margin-top: 0;
   }
+  .package-data-describe {
+    justify-content: flex-start;
+    align-items: flex-start;
+  }
 }
 @media (min-width: 461px) and (max-width: 769px) {
   .package-item-container {
@@ -290,10 +302,18 @@ input.form-control:focus {
     font-size: 14px;
     margin-top: 0;
   }
+  .package-data-describe {
+    justify-content: flex-start;
+    align-items: flex-start;
+  }
 }
 @media (min-width: 769px) and (max-width: 1400px) {
   .package-item-container {
     width: 50%;
+  }
+  .package-data-describe {
+    justify-content: flex-start;
+    align-items: flex-start;
   }
 }
 

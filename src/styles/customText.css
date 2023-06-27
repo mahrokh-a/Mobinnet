@@ -1,0 +1,28 @@
+.normal-font {
+    font-size: 11px;
+}
+.large-font {
+    font-size: 22px;
+}
+.medium-font {
+    font-size: 14px;
+}
+.x-large-font {
+    font-size: 25px;
+}
+
+
+@media (max-width: 1400px) {
+    .normal-font {
+        font-size: 15px;
+    }
+    .large-font {
+        font-size: 26px;
+    }
+    .medium-font {
+        font-size: 19px;
+    }
+    .x-large-font {
+        font-size: 28px;
+    }
+  }
